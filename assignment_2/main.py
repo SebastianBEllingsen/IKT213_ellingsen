@@ -3,7 +3,7 @@ import numpy as np
 img1 = cv2.imread("iris-1.png")
 
 def padding(image, border_width):
-    return cv2.copyMakeBorder(image, border_width, border_width, border_width, border_width, cv2.BORDER_REPLICATE)
+    return cv2.copyMakeBorder(image, border_width, border_width, border_width, border_width, cv2.BORDER_REFLECT)
 
 def cropping(image, x_0, x_1, y_0, y_1):
     return image[x_0:x_1, y_0:y_1]
@@ -50,7 +50,10 @@ cv2.imwrite('iris-1-padded.png', padding(img1, 100))
 
 #2 Cropping
 image_shape = img1.shape
-cv2.imwrite('iris-1-cropped.png', cropping(img1, image_shape[0]-200, image_shape[0]-130, image_shape[1]-200, image_shape[1]-130))
+print(image_shape[0])
+print(image_shape[1])
+print(image_shape[2])
+cv2.imwrite('iris-1-cropped.png', cropping(img1, 200, image_shape[0]-130, 200, image_shape[1]-130))
 
 #3 Resizing
 cv2.imwrite('iris-1-resized.png', rezise(img1, 200, 200))
